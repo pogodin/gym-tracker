@@ -16,6 +16,8 @@ import {
 import { useTemplateWithExercises } from '../database/hooks/useTemplates';
 import * as exerciseRepo from '../database/repositories/sessionExerciseRepository';
 import * as setRepo from '../database/repositories/sessionSetRepository';
+import * as sessionRepo from '../database/repositories/workoutSessionRepository';
+import * as templateRepo from '../database/repositories/dayTemplateRepository';
 import type { SessionExerciseWithSets, UpdateSessionSet } from '../types';
 
 export function useWorkout(templateId: number) {
@@ -73,6 +75,9 @@ export function useWorkout(templateId: number) {
       // Create new session
       const newSession = await createSessionMutation.mutateAsync(templateId);
 
+      // Fetch template directly to ensure we have the latest data
+      const freshTemplate = await templateRepo.getTemplateWithExercises(templateId);
+
       // Auto-populate from last completed session or template
       if (lastCompleted && lastCompleted.exercises.length > 0) {
         // Copy exercises and sets from last completed session
@@ -93,9 +98,9 @@ export function useWorkout(templateId: number) {
             });
           }
         }
-      } else if (template && template.exercises.length > 0) {
+      } else if (freshTemplate && freshTemplate.exercises.length > 0) {
         // Create exercises from template (no sets - those come from history or are added manually)
-        for (const exercise of template.exercises) {
+        for (const exercise of freshTemplate.exercises) {
           await exerciseRepo.createSessionExercise({
             sessionId: newSession.id,
             name: exercise.name,
@@ -104,8 +109,11 @@ export function useWorkout(templateId: number) {
         }
       }
 
-      // Refetch to get populated session
-      await refetchSession();
+      // Fetch the populated session directly
+      const populatedSession = await sessionRepo.getSessionWithExercises(newSession.id);
+      if (populatedSession) {
+        setCurrentSession(populatedSession);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to start workout');
     } finally {
@@ -114,10 +122,8 @@ export function useWorkout(templateId: number) {
   }, [
     activeSession,
     lastCompleted,
-    template,
     templateId,
     createSessionMutation,
-    refetchSession,
     setCurrentSession,
     setLoading,
     setError,

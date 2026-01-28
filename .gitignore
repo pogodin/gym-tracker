@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# E2E test artifacts
+e2e/reports/*.json
+e2e/reports/*.txt
+e2e/screenshots/**/*.png
+e2e/videos/
+test-results/

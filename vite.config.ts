@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { copyFileSync, createReadStream, existsSync } from 'fs'
+import { copyFileSync, createReadStream } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 

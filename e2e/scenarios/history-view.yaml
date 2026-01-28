@@ -1,0 +1,31 @@
+name: "History View"
+description: |
+  Tests navigating to the history page and viewing past workout sessions.
+  Note: This test assumes there may or may not be previous workout data.
+
+preconditions:
+  - "App is loaded and database is initialized"
+
+steps:
+  - id: navigate-to-history
+    action: click
+    target: "button[aria-label='View history']"
+    expect:
+      - url_contains: "/history"
+
+  - id: verify-history-page
+    action: wait
+    target: "1000"
+    expect:
+      - visible: "Workout History"
+
+  - id: navigate-back-home
+    action: click
+    target: "header button"
+    expect:
+      - url: "/"
+
+postconditions:
+  - "User can navigate to history and back to home"
+
+tags: [navigation, history]

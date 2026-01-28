@@ -1,0 +1,20 @@
+orchestrator:
+  max_iterations: 5          # Maximum fix attempts per scenario
+  parallel_scenarios: false  # Run scenarios sequentially
+  stop_on_first_failure: false
+
+test_runner:
+  base_url: "http://localhost:5173"
+  timeout: 30000
+  screenshot_on_failure: true
+  screenshot_on_step: true   # Capture every step for debugging
+  video: false
+
+analyzer:
+  confidence_threshold: 0.7
+  max_suggestions: 3
+
+coding_agent:
+  auto_apply: true           # Auto-apply fixes without confirmation
+  max_files_per_fix: 3
+  validate_typescript: true

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useWorkout } from '../hooks/useWorkout';
 import { useTemplate } from '../database/hooks/useTemplates';
@@ -30,9 +30,15 @@ export default function WorkoutPage() {
   const [showFinishConfirm, setShowFinishConfirm] = useState(false);
   const [showCancelConfirm, setShowCancelConfirm] = useState(false);
 
-  // Start workout on mount
+  // Guard to prevent multiple startWorkout calls
+  const hasStartedRef = useRef(false);
+
+  // Start workout on mount (only once)
   useEffect(() => {
-    startWorkout();
+    if (!hasStartedRef.current) {
+      hasStartedRef.current = true;
+      startWorkout();
+    }
   }, [startWorkout]);
 
   const handleFinish = async () => {
