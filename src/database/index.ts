@@ -74,6 +74,9 @@ export async function initDatabase(): Promise<void> {
     document.body.appendChild(jeepEl);
     await customElements.whenDefined('jeep-sqlite');
 
+    // Wait for the component to be ready
+    await (jeepEl as any).componentOnReady();
+
     sqlite = new SQLiteConnection(CapacitorSQLite);
     await sqlite.initWebStore();
   } else {
