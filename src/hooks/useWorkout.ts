@@ -200,12 +200,22 @@ export function useWorkout(templateId: number) {
     async (exerciseId: number, weight?: number, reps?: number) => {
       if (!currentSession) return;
 
+      // Get weight from the last set if not provided
+      let initialWeight = weight ?? null;
+      if (initialWeight === null) {
+        const exercise = currentSession.exercises.find((e) => e.id === exerciseId);
+        if (exercise && exercise.sets.length > 0) {
+          const lastSet = exercise.sets[exercise.sets.length - 1];
+          initialWeight = lastSet.weight;
+        }
+      }
+
       const setNumber = await setRepo.getNextSetNumber(exerciseId);
       const newSet = await createSetMutation.mutateAsync({
         data: {
           exerciseId,
           setNumber,
-          weight: weight ?? null,
+          weight: initialWeight,
           reps: reps ?? null,
         },
         sessionId: currentSession.id,
