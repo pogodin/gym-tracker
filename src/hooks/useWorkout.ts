@@ -37,7 +37,7 @@ export function useWorkout(templateId: number) {
 
   const { data: activeSession, isLoading: activeLoading } = useActiveSession(templateId);
   const { data: lastCompleted } = useLastCompletedSession(templateId);
-  const { data: template } = useTemplateWithExercises(templateId);
+  const { data: _template } = useTemplateWithExercises(templateId);
   const { data: sessionData, refetch: refetchSession } = useSession(currentSession?.id);
 
   const createSessionMutation = useCreateSession();
