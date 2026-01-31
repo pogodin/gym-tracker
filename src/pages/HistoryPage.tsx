@@ -7,7 +7,7 @@ export default function HistoryPage() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
-      <header className="bg-white shadow-sm">
+      <header className="bg-white shadow-sm safe-area-header">
         <div className="max-w-lg mx-auto px-4 py-4 flex items-center">
           <button
             onClick={() => navigate(-1)}

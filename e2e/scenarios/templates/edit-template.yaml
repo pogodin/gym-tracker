@@ -1,0 +1,38 @@
+name: Edit Existing Template
+description: User modifies an existing workout template
+tags: [templates]
+requires:
+  - templates/create-template  # Depends on template existing
+
+steps:
+  # Find and edit template
+  - see: "Push Day"
+  - tap: "@edit-template-Push Day"
+  - waitFor: "@template-name-input"
+
+  # Verify existing data loaded
+  - see: "Bench Press"
+  - see: "Overhead Press"
+  - see: "Tricep Dips"
+
+  # Modify template name
+  - clear: "@template-name-input"
+  - type:
+      field: "@template-name-input"
+      text: "Push Day (Updated)"
+
+  # Add new exercise
+  - tap: "Add Exercise"
+  - type:
+      field: "@exercise-input-3"
+      text: "Lateral Raises"
+
+  - screenshot: "template-edited"
+
+  # Save changes
+  - tap: "Save Template"
+  - wait: 1s
+
+  # Verify changes saved
+  - see: "Push Day (Updated)"
+  - screenshot: "home-after-edit"

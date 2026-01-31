@@ -1,0 +1,29 @@
+name: Export Application Data
+description: User exports all data as JSON file
+tags: [settings, data]
+
+steps:
+  # From home screen
+  - see: "Gym Tracker"
+
+  # Navigate to settings
+  - tap: "@settings-button"
+  - wait: 500ms
+
+  # Verify settings page
+  - see: "Settings"
+  - see: "Export All Data"
+  - screenshot: "settings-page"
+
+  # Export data
+  - tap: "Export All Data"
+  - wait: 1s
+
+  # Platform-specific file save behavior
+  - platform:
+      ios:
+        - see: "Save"  # iOS share sheet
+      android:
+        - see: "Download"  # Android download
+
+  - screenshot: "export-initiated"

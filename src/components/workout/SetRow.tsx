@@ -3,11 +3,13 @@ import type { SessionSet, UpdateSessionSet } from '../../types';
 
 interface SetRowProps {
   set: SessionSet;
+  exerciseName: string;
+  setIndex: number;
   onUpdate: (data: UpdateSessionSet) => void;
   onDelete: () => void;
 }
 
-export function SetRow({ set, onUpdate, onDelete }: SetRowProps) {
+export function SetRow({ set, exerciseName, setIndex, onUpdate, onDelete }: SetRowProps) {
   const [weight, setWeight] = useState(set.weight?.toString() ?? '');
   const [reps, setReps] = useState(set.reps?.toString() ?? '');
 
@@ -50,6 +52,7 @@ export function SetRow({ set, onUpdate, onDelete }: SetRowProps) {
           placeholder="0"
           className="w-20 px-2 py-1 text-center border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
           step="0.5"
+          aria-label={`weight-input-${exerciseName}-${setIndex}`}
         />
         <span className="text-sm text-gray-500">lbs</span>
 
@@ -62,6 +65,7 @@ export function SetRow({ set, onUpdate, onDelete }: SetRowProps) {
           onBlur={handleRepsBlur}
           placeholder="0"
           className="w-16 px-2 py-1 text-center border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary-500"
+          aria-label={`reps-input-${exerciseName}-${setIndex}`}
         />
         <span className="text-sm text-gray-500">reps</span>
       </div>
@@ -74,7 +78,7 @@ export function SetRow({ set, onUpdate, onDelete }: SetRowProps) {
             ? 'bg-green-500 text-white'
             : 'bg-gray-200 text-gray-500 hover:bg-gray-300'
         }`}
-        aria-label={set.completed ? 'Mark as incomplete' : 'Mark as complete'}
+        aria-label={`complete-set-${exerciseName}-${setIndex}`}
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />

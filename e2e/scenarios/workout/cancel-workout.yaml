@@ -1,0 +1,29 @@
+name: Cancel Workout Session
+description: User exits workout with confirmation dialog
+tags: [workout]
+requires:
+  - workout/start-workout
+
+steps:
+  # In active workout
+  - see: "Bench Press"
+
+  # Try to exit
+  - tap: "@close-workout"
+
+  # Verify confirmation dialog
+  - see: "Leave Workout"
+  - screenshot: "cancel-confirmation"
+
+  # Cancel the dialog (stay in workout)
+  - tap: "Cancel"
+  - see: "Bench Press"
+
+  # Try to exit again and confirm
+  - tap: "@close-workout"
+  - tap: "Leave"
+  - wait: 500ms
+
+  # Verify back on home
+  - see: "Gym Tracker"
+  - screenshot: "workout-cancelled"

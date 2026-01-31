@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1000,
+    "description": "Finish Workout Session",
+    "crawlStage": "crawl",
+    "priority": 1,
+    "maxNumberOfRuns": 1,
+    "contextDescriptor": {
+      "condition": "app_under_test_shown"
+    },
+    "actions": [
+      {
+        "eventType": "ASSERTION",
+        "description": "Assert element exists: @finish-workout",
+        "contextDescriptor": {
+          "condition": "element_present",
+          "elementDescriptors": [
+            {
+              "contentDescription": "finish-workout"
+            }
+          ]
+        }
+      },
+      {
+        "eventType": "TAKE_SCREENSHOT",
+        "description": "Screenshot: before-finish",
+        "screenshotName": "before-finish"
+      },
+      {
+        "eventType": "VIEW_CLICKED",
+        "description": "Tap: @finish-workout",
+        "elementDescriptors": [
+          {
+            "contentDescription": "finish-workout"
+          }
+        ]
+      },
+      {
+        "eventType": "WAIT",
+        "description": "Wait 1s",
+        "delayTime": 1000
+      },
+      {
+        "eventType": "ASSERTION",
+        "description": "Assert visible: \"Gym Tracker\"",
+        "contextDescriptor": {
+          "condition": "element_present",
+          "visionText": "Gym Tracker"
+        }
+      },
+      {
+        "eventType": "ASSERTION",
+        "description": "Assert visible: \"Push Day\"",
+        "contextDescriptor": {
+          "condition": "element_present",
+          "visionText": "Push Day"
+        }
+      },
+      {
+        "eventType": "TAKE_SCREENSHOT",
+        "description": "Screenshot: workout-finished",
+        "screenshotName": "workout-finished"
+      }
+    ]
+  }
+]

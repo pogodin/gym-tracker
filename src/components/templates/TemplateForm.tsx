@@ -53,6 +53,7 @@ function SortableExerciseItem({ exercise, index, onNameChange, onDelete }: Sorta
         onChange={(e) => onNameChange(e.target.value)}
         placeholder="Exercise name"
         className="flex-1"
+        aria-label={`exercise-input-${index}`}
       />
       <button
         type="button"
@@ -132,6 +133,7 @@ export function TemplateForm({ template, onSave, onCancel, isLoading }: Template
         onChange={(e) => setName(e.target.value)}
         placeholder="e.g., Push Day, Leg Day"
         required
+        aria-label="template-name-input"
       />
 
       <div>

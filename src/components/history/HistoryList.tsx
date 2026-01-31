@@ -62,6 +62,7 @@ export function HistoryList() {
                 key={session.id}
                 onClick={() => navigate(`/history/${session.id}`)}
                 className="w-full bg-white rounded-lg shadow-sm p-4 text-left hover:shadow-md transition-shadow"
+                aria-label={`session-${session.templateName}`}
               >
                 <div className="flex items-center justify-between">
                   <div>

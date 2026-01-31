@@ -1,0 +1,197 @@
+[
+  {
+    "id": 1000,
+    "description": "Create New Workout Template",
+    "crawlStage": "crawl",
+    "priority": 1,
+    "maxNumberOfRuns": 1,
+    "contextDescriptor": {
+      "condition": "app_under_test_shown"
+    },
+    "actions": [
+      {
+        "eventType": "ASSERTION",
+        "description": "Assert visible: \"Gym Tracker\"",
+        "contextDescriptor": {
+          "condition": "element_present",
+          "visionText": "Gym Tracker"
+        }
+      },
+      {
+        "eventType": "TAKE_SCREENSHOT",
+        "description": "Screenshot: home-initial",
+        "screenshotName": "home-initial"
+      },
+      {
+        "eventType": "VIEW_CLICKED",
+        "description": "Tap: New Template",
+        "elementDescriptors": [
+          {
+            "textRegex": ".*New Template.*"
+          }
+        ]
+      },
+      {
+        "eventType": "WAIT_FOR_ELEMENT",
+        "description": "Wait for: @template-name-input",
+        "delayTime": 30000,
+        "elementDescriptors": [
+          {
+            "contentDescription": "template-name-input"
+          }
+        ]
+      },
+      {
+        "eventType": "ASSERTION",
+        "description": "Assert visible: \"New Template\"",
+        "contextDescriptor": {
+          "condition": "element_present",
+          "visionText": "New Template"
+        }
+      },
+      {
+        "eventType": "VIEW_CLICKED",
+        "description": "Focus: @template-name-input",
+        "elementDescriptors": [
+          {
+            "contentDescription": "template-name-input"
+          }
+        ]
+      },
+      {
+        "eventType": "VIEW_TEXT_CHANGED",
+        "description": "Type: \"Push Day\" into @template-name-input",
+        "replacementText": "Push Day",
+        "elementDescriptors": [
+          {
+            "contentDescription": "template-name-input"
+          }
+        ]
+      },
+      {
+        "eventType": "VIEW_CLICKED",
+        "description": "Tap: Add Exercise",
+        "elementDescriptors": [
+          {
+            "textRegex": ".*Add Exercise.*"
+          }
+        ]
+      },
+      {
+        "eventType": "VIEW_CLICKED",
+        "description": "Focus: @exercise-input-0",
+        "elementDescriptors": [
+          {
+            "contentDescription": "exercise-input-0"
+          }
+        ]
+      },
+      {
+        "eventType": "VIEW_TEXT_CHANGED",
+        "description": "Type: \"Bench Press\" into @exercise-input-0",
+        "replacementText": "Bench Press",
+        "elementDescriptors": [
+          {
+            "contentDescription": "exercise-input-0"
+          }
+        ]
+      },
+      {
+        "eventType": "VIEW_CLICKED",
+        "description": "Tap: Add Exercise",
+        "elementDescriptors": [
+          {
+            "textRegex": ".*Add Exercise.*"
+          }
+        ]
+      },
+      {
+        "eventType": "VIEW_CLICKED",
+        "description": "Focus: @exercise-input-1",
+        "elementDescriptors": [
+          {
+            "contentDescription": "exercise-input-1"
+          }
+        ]
+      },
+      {
+        "eventType": "VIEW_TEXT_CHANGED",
+        "description": "Type: \"Overhead Press\" into @exercise-input-1",
+        "replacementText": "Overhead Press",
+        "elementDescriptors": [
+          {
+            "contentDescription": "exercise-input-1"
+          }
+        ]
+      },
+      {
+        "eventType": "VIEW_CLICKED",
+        "description": "Tap: Add Exercise",
+        "elementDescriptors": [
+          {
+            "textRegex": ".*Add Exercise.*"
+          }
+        ]
+      },
+      {
+        "eventType": "VIEW_CLICKED",
+        "description": "Focus: @exercise-input-2",
+        "elementDescriptors": [
+          {
+            "contentDescription": "exercise-input-2"
+          }
+        ]
+      },
+      {
+        "eventType": "VIEW_TEXT_CHANGED",
+        "description": "Type: \"Tricep Dips\" into @exercise-input-2",
+        "replacementText": "Tricep Dips",
+        "elementDescriptors": [
+          {
+            "contentDescription": "exercise-input-2"
+          }
+        ]
+      },
+      {
+        "eventType": "TAKE_SCREENSHOT",
+        "description": "Screenshot: template-filled",
+        "screenshotName": "template-filled"
+      },
+      {
+        "eventType": "VIEW_CLICKED",
+        "description": "Tap: Create Template",
+        "elementDescriptors": [
+          {
+            "textRegex": ".*Create Template.*"
+          }
+        ]
+      },
+      {
+        "eventType": "WAIT",
+        "description": "Wait 1s",
+        "delayTime": 1000
+      },
+      {
+        "eventType": "ASSERTION",
+        "description": "Assert visible: \"Gym Tracker\"",
+        "contextDescriptor": {
+          "condition": "element_present",
+          "visionText": "Gym Tracker"
+        }
+      },
+      {
+        "eventType": "ASSERTION",
+        "description": "Assert visible: \"Push Day\"",
+        "contextDescriptor": {
+          "condition": "element_present",
+          "visionText": "Push Day"
+        }
+      },
+      {
+        "eventType": "TAKE_SCREENSHOT",
+        "description": "Screenshot: home-with-template",
+        "screenshotName": "home-with-template"
+      }
+    ]
+  }
+]

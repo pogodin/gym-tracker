@@ -1,0 +1,34 @@
+name: View Workout History
+description: User navigates to history and views past workouts
+tags: [smoke, history]
+requires:
+  - workout/finish-workout  # Need completed workout
+
+steps:
+  # From home screen
+  - see: "Gym Tracker"
+
+  # Navigate to history
+  - tap: "@history-button"
+  - wait: 500ms
+
+  # Verify history page
+  - see: "History"
+  - screenshot: "history-page"
+
+  # Should see today's workout
+  - see: "Push Day"
+
+  # Tap to view details
+  - tap: "@session-Push Day"
+  - wait: 500ms
+
+  # Verify session detail
+  - see: "Bench Press"
+  - see: "135"  # Weight from logged set
+  - see: "10"   # Reps from logged set
+  - screenshot: "session-detail"
+
+  # Go back
+  - back
+  - see: "History"

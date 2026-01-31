@@ -73,10 +73,12 @@ export function ExerciseCard({
         </div>
 
         <div className="p-4 space-y-2">
-          {exercise.sets.map((set) => (
+          {exercise.sets.map((set, index) => (
             <SetRow
               key={set.id}
               set={set}
+              exerciseName={exercise.name}
+              setIndex={index}
               onUpdate={onUpdateSet}
               onDelete={() => onDeleteSet(set.id)}
             />
@@ -88,6 +90,7 @@ export function ExerciseCard({
             size="sm"
             onClick={onAddSet}
             className="w-full mt-2"
+            aria-label={`add-set-${exercise.name}`}
           >
             + Add Set
           </Button>

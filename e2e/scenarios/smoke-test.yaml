@@ -1,0 +1,107 @@
+name: Full Smoke Test
+description: End-to-end test covering complete user journey
+tags: [smoke, critical]
+
+steps:
+  # ========== HOME SCREEN ==========
+  - see: "Gym Tracker"
+  - screenshot: "01-home-empty"
+
+  # ========== CREATE TEMPLATE ==========
+  - tap: "New Template"
+  - waitFor: "@template-name-input"
+  - type:
+      field: "@template-name-input"
+      text: "Leg Day"
+  - tap: "Add Exercise"
+  - type:
+      field: "@exercise-input-0"
+      text: "Squats"
+  - tap: "Add Exercise"
+  - type:
+      field: "@exercise-input-1"
+      text: "Romanian Deadlift"
+  - tap: "Add Exercise"
+  - type:
+      field: "@exercise-input-2"
+      text: "Leg Press"
+  - screenshot: "02-template-filled"
+  - tap: "Create Template"
+  - wait: 1s
+  - see: "Leg Day"
+  - screenshot: "03-template-created"
+
+  # ========== START WORKOUT ==========
+  - tap: "@start-workout-Leg Day"
+  - wait: 1s
+  - see: "Squats"
+  - see: "Romanian Deadlift"
+  - see: "Leg Press"
+  - screenshot: "04-workout-started"
+
+  # ========== LOG SETS ==========
+  # Squats
+  - tap: "@add-set-Squats"
+  - type:
+      field: "@weight-input-Squats-0"
+      text: "225"
+  - type:
+      field: "@reps-input-Squats-0"
+      text: "8"
+  - tap: "@complete-set-Squats-0"
+
+  - tap: "@add-set-Squats"
+  - type:
+      field: "@weight-input-Squats-1"
+      text: "245"
+  - type:
+      field: "@reps-input-Squats-1"
+      text: "6"
+  - tap: "@complete-set-Squats-1"
+
+  # Romanian Deadlift
+  - tap: "@add-set-Romanian Deadlift"
+  - type:
+      field: "@weight-input-Romanian Deadlift-0"
+      text: "185"
+  - type:
+      field: "@reps-input-Romanian Deadlift-0"
+      text: "10"
+  - tap: "@complete-set-Romanian Deadlift-0"
+
+  - screenshot: "05-sets-logged"
+
+  # ========== FINISH WORKOUT ==========
+  - tap: "@finish-workout"
+  - wait: 1s
+  - see: "Gym Tracker"
+  - screenshot: "06-workout-finished"
+
+  # ========== CHECK HISTORY ==========
+  - tap: "@history-button"
+  - wait: 500ms
+  - see: "History"
+  - see: "Leg Day"
+  - screenshot: "07-history-visible"
+
+  - tap: "@session-Leg Day"
+  - wait: 500ms
+  - see: "Squats"
+  - see: "225"
+  - see: "8"
+  - screenshot: "08-session-detail"
+
+  - back
+  - back
+
+  # ========== SETTINGS ==========
+  - tap: "@settings-button"
+  - wait: 500ms
+  - see: "Settings"
+  - see: "Export All Data"
+  - see: "Clear All Data"
+  - screenshot: "09-settings"
+
+  - back
+  - see: "Gym Tracker"
+  - screenshot: "10-test-complete"
