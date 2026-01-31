@@ -40,14 +40,14 @@ e2e/
 
 ### Install Maestro CLI
 
-**macOS:**
-```bash
-brew install maestro
-```
-
-**Linux/Windows (via curl):**
+**All platforms (macOS, Linux, Windows WSL):**
 ```bash
 curl -Ls "https://get.maestro.mobile.dev" | bash
+```
+
+After installation, restart your terminal or run:
+```bash
+export PATH="$PATH:$HOME/.maestro/bin"
 ```
 
 ### Verify Installation
