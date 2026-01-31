@@ -1,0 +1,56 @@
+# Edit Existing Template
+# User modifies an existing workout template
+
+appId: com.gymtracker.app
+tags:
+  - templates
+---
+
+- launchApp
+
+# Prerequisite: Create a template first
+- tapOn: "New Template"
+- tapOn:
+    id: "template-name-input"
+- inputText: "Test Template"
+- tapOn: "Add Exercise"
+- tapOn:
+    id: "exercise-input-0"
+- inputText: "Exercise 1"
+- tapOn: "Create Template"
+- waitForAnimationToEnd
+
+# Find and edit template
+- assertVisible: "Test Template"
+- tapOn:
+    id: "edit-template-Test Template"
+
+- extendedWaitUntil:
+    visible:
+      id: "template-name-input"
+    timeout: 5000
+
+# Verify existing data loaded
+- assertVisible: "Exercise 1"
+
+# Modify template name
+- tapOn:
+    id: "template-name-input"
+- eraseText: 13
+- inputText: "Updated Template"
+
+# Add new exercise
+- tapOn: "Add Exercise"
+- tapOn:
+    id: "exercise-input-1"
+- inputText: "New Exercise"
+
+- takeScreenshot: template-edited
+
+# Save changes
+- tapOn: "Save"
+- waitForAnimationToEnd
+
+# Verify changes saved
+- assertVisible: "Updated Template"
+- takeScreenshot: home-after-edit

@@ -1,0 +1,29 @@
+# Settings Navigation
+# User navigates to settings and views options
+
+appId: com.gymtracker.app
+tags:
+  - settings
+---
+
+- launchApp:
+    clearState: true
+
+# From home screen
+- assertVisible: "Gym Tracker"
+
+# Navigate to settings
+- tapOn:
+    id: "settings-button"
+- waitForAnimationToEnd
+
+# Verify settings page
+- assertVisible: "Settings"
+- assertVisible: "Export All Data"
+- assertVisible: "Import Data"
+- assertVisible: "Clear All Data"
+- takeScreenshot: settings-page
+
+# Go back
+- back
+- assertVisible: "Gym Tracker"

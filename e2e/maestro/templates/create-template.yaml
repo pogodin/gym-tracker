@@ -1,0 +1,56 @@
+# Create New Workout Template
+# User creates a new workout template with exercises
+
+appId: com.gymtracker.app
+tags:
+  - templates
+  - smoke
+---
+
+- launchApp:
+    clearState: true
+
+# Verify home screen
+- assertVisible: "Gym Tracker"
+- takeScreenshot: home-initial
+
+# Create new template
+- tapOn: "New Template"
+- extendedWaitUntil:
+    visible:
+      id: "template-name-input"
+    timeout: 5000
+
+# Enter template details
+- tapOn:
+    id: "template-name-input"
+- inputText: "Push Day"
+
+# Add first exercise
+- tapOn: "Add Exercise"
+- tapOn:
+    id: "exercise-input-0"
+- inputText: "Bench Press"
+
+# Add second exercise
+- tapOn: "Add Exercise"
+- tapOn:
+    id: "exercise-input-1"
+- inputText: "Overhead Press"
+
+# Add third exercise
+- tapOn: "Add Exercise"
+- tapOn:
+    id: "exercise-input-2"
+- inputText: "Tricep Dips"
+
+- takeScreenshot: template-filled
+
+# Save template
+- tapOn: "Create Template"
+- waitForAnimationToEnd
+
+# Verify back on home with new template
+- assertVisible: "Gym Tracker"
+- assertVisible: "Push Day"
+- takeScreenshot: home-with-template

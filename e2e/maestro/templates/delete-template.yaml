@@ -1,0 +1,41 @@
+# Delete Workout Template
+# User deletes a workout template with confirmation
+
+appId: com.gymtracker.app
+tags:
+  - templates
+---
+
+- launchApp
+
+# Prerequisite: Create a template first
+- tapOn: "New Template"
+- tapOn:
+    id: "template-name-input"
+- inputText: "Template To Delete"
+- tapOn: "Add Exercise"
+- tapOn:
+    id: "exercise-input-0"
+- inputText: "Some Exercise"
+- tapOn: "Create Template"
+- waitForAnimationToEnd
+
+# Ensure template exists
+- assertVisible: "Template To Delete"
+- takeScreenshot: before-delete
+
+# Initiate delete
+- tapOn:
+    id: "delete-template-Template To Delete"
+
+# Verify confirmation dialog
+- assertVisible: "Delete Template"
+- assertVisible: "Are you sure"
+
+# Confirm deletion
+- tapOn: "Delete"
+- waitForAnimationToEnd
+
+# Verify template removed
+- assertNotVisible: "Template To Delete"
+- takeScreenshot: after-delete

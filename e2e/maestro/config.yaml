@@ -1,0 +1,26 @@
+# Maestro Configuration for Gym Tracker
+# This file contains shared configuration for all flows
+
+# App identifiers
+appId:
+  android: com.gymtracker.app
+  ios: com.gymtracker.app
+
+# Default settings
+executionOrder:
+  continueOnFailure: false
+  flowsOrder:
+    - smoke-test.yaml
+    - templates/*.yaml
+    - workout/*.yaml
+    - history/*.yaml
+    - settings/*.yaml
+
+# Tags for filtering tests
+tags:
+  smoke:
+    - smoke-test.yaml
+  templates:
+    - templates/*.yaml
+  workout:
+    - workout/*.yaml

@@ -1,0 +1,73 @@
+# Log Exercise Sets
+# User logs weight and reps for exercise sets during workout
+
+appId: com.gymtracker.app
+tags:
+  - workout
+---
+
+- launchApp
+
+# Prerequisite: Create template and start workout
+- tapOn: "New Template"
+- tapOn:
+    id: "template-name-input"
+- inputText: "Log Sets Test"
+- tapOn: "Add Exercise"
+- tapOn:
+    id: "exercise-input-0"
+- inputText: "Bench Press"
+- tapOn: "Create Template"
+- waitForAnimationToEnd
+
+- tapOn:
+    id: "start-workout-Log Sets Test"
+- waitForAnimationToEnd
+
+# In active workout
+- assertVisible: "Bench Press"
+
+# Add first set
+- tapOn:
+    id: "add-set-Bench Press"
+
+- tapOn:
+    id: "weight-input-Bench Press-0"
+- inputText: "135"
+
+- tapOn:
+    id: "reps-input-Bench Press-0"
+- inputText: "10"
+
+# Mark set as completed
+- tapOn:
+    id: "complete-set-Bench Press-0"
+- takeScreenshot: first-set-completed
+
+# Add second set
+- tapOn:
+    id: "add-set-Bench Press"
+- tapOn:
+    id: "weight-input-Bench Press-1"
+- inputText: "155"
+- tapOn:
+    id: "reps-input-Bench Press-1"
+- inputText: "8"
+- tapOn:
+    id: "complete-set-Bench Press-1"
+
+# Add third set
+- tapOn:
+    id: "add-set-Bench Press"
+- tapOn:
+    id: "weight-input-Bench Press-2"
+- inputText: "175"
+- tapOn:
+    id: "reps-input-Bench Press-2"
+- inputText: "6"
+- tapOn:
+    id: "complete-set-Bench Press-2"
+
+# Verify progress updated
+- assertVisible: "3 /"
+- takeScreenshot: multiple-sets-logged

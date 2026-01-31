@@ -1,0 +1,72 @@
+# View Workout History
+# User navigates to history and views past workouts
+
+appId: com.gymtracker.app
+tags:
+  - history
+  - smoke
+---
+
+- launchApp
+
+# Prerequisite: Complete a workout first
+- tapOn: "New Template"
+- tapOn:
+    id: "template-name-input"
+- inputText: "History Test"
+- tapOn: "Add Exercise"
+- tapOn:
+    id: "exercise-input-0"
+- inputText: "History Exercise"
+- tapOn: "Create Template"
+- waitForAnimationToEnd
+
+- tapOn:
+    id: "start-workout-History Test"
+- waitForAnimationToEnd
+
+- tapOn:
+    id: "add-set-History Exercise"
+- tapOn:
+    id: "weight-input-History Exercise-0"
+- inputText: "200"
+- tapOn:
+    id: "reps-input-History Exercise-0"
+- inputText: "12"
+- tapOn:
+    id: "complete-set-History Exercise-0"
+
+- tapOn:
+    id: "finish-workout"
+- tapOn: "Finish"
+- waitForAnimationToEnd
+
+# Now test history viewing
+- assertVisible: "Gym Tracker"
+
+# Navigate to history
+- tapOn:
+    id: "history-button"
+- waitForAnimationToEnd
+
+# Verify history page
+- assertVisible: "History"
+- takeScreenshot: history-page
+
+# Should see today's workout
+- assertVisible: "History Test"
+
+# Tap to view details
+- tapOn:
+    id: "session-History Test"
+- waitForAnimationToEnd
+
+# Verify session detail
+- assertVisible: "History Exercise"
+- assertVisible: "200"
+- assertVisible: "12"
+- takeScreenshot: session-detail
+
+# Go back
+- back
+- assertVisible: "History"

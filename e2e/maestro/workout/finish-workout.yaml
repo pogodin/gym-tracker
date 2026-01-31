@@ -1,0 +1,53 @@
+# Finish Workout Session
+# User completes workout and saves to history
+
+appId: com.gymtracker.app
+tags:
+  - workout
+  - smoke
+---
+
+- launchApp
+
+# Prerequisite: Create template, start workout, log a set
+- tapOn: "New Template"
+- tapOn:
+    id: "template-name-input"
+- inputText: "Finish Test"
+- tapOn: "Add Exercise"
+- tapOn:
+    id: "exercise-input-0"
+- inputText: "Quick Exercise"
+- tapOn: "Create Template"
+- waitForAnimationToEnd
+
+- tapOn:
+    id: "start-workout-Finish Test"
+- waitForAnimationToEnd
+
+- tapOn:
+    id: "add-set-Quick Exercise"
+- tapOn:
+    id: "weight-input-Quick Exercise-0"
+- inputText: "100"
+- tapOn:
+    id: "reps-input-Quick Exercise-0"
+- inputText: "10"
+- tapOn:
+    id: "complete-set-Quick Exercise-0"
+
+- takeScreenshot: before-finish
+
+# Finish workout
+- tapOn:
+    id: "finish-workout"
+
+# Confirm finish
+- assertVisible: "Finish Workout"
+- tapOn: "Finish"
+- waitForAnimationToEnd
+
+# Verify returned to home
+- assertVisible: "Gym Tracker"
+- assertVisible: "Finish Test"
+- takeScreenshot: workout-finished
