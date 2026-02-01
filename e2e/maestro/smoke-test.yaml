@@ -18,25 +18,37 @@ tags:
 - tapOn: "+ New Template"
 
 - assertVisible: "Template Name"
-- tapOn: "e.g., Push Day, Leg Day"
+- tapOn:
+    id: "template-name-input"
+    optional: true
+- tapOn: "Template Name"
 - inputText: "Leg Day"
 - hideKeyboard
 
 # Add first exercise
 - tapOn: "+ Add Exercise"
-- tapOn: "Exercise name"
+- tapOn:
+    id: "exercise-input-0"
+    optional: true
+- tapOn: "Exercise Name"
 - inputText: "Squats"
 - hideKeyboard
 
 # Add second exercise
 - tapOn: "+ Add Exercise"
-- tapOn: "Exercise name"
+- tapOn:
+    id: "exercise-input-1"
+    optional: true
+- tapOn: "Exercise Name"
 - inputText: "Romanian Deadlift"
 - hideKeyboard
 
 # Add third exercise
 - tapOn: "+ Add Exercise"
-- tapOn: "Exercise name"
+- tapOn:
+    id: "exercise-input-2"
+    optional: true
+- tapOn: "Exercise Name"
 - inputText: "Leg Press"
 - hideKeyboard
 

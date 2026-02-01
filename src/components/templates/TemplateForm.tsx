@@ -49,11 +49,14 @@ function SortableExerciseItem({ exercise, index, onNameChange, onDelete }: Sorta
       </button>
       <span className="text-gray-500 font-medium w-6">{index + 1}.</span>
       <Input
+        label="Exercise Name"
         value={exercise.name}
         onChange={(e) => onNameChange(e.target.value)}
         placeholder="Exercise name"
         className="flex-1"
+        id={`exercise-input-${index}`}
         aria-label={`exercise-input-${index}`}
+        data-testid={`exercise-input-${index}`}
       />
       <button
         type="button"
@@ -133,7 +136,9 @@ export function TemplateForm({ template, onSave, onCancel, isLoading }: Template
         onChange={(e) => setName(e.target.value)}
         placeholder="e.g., Push Day, Leg Day"
         required
+        id="template-name-input"
         aria-label="template-name-input"
+        data-testid="template-name-input"
       />
 
       <div>

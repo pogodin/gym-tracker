@@ -162,41 +162,48 @@ This is a Capacitor app using WebView. Some limitations apply:
 
 ## Maestro Cloud
 
-Run tests on real devices in the cloud without local setup.
+Run tests on real devices in the cloud without local setup. Especially useful for:
+- Parallel execution (Android and iOS simultaneously)
+- Visual reports with video recordings
+- CI/CD integration
 
-### Setup
+### Free Tier (Trial) Features
+- **Hosted Devices**: Access to iPhone 11-15 (Simulators) and Pixel 4-8 (Emulators).
+- **Parallelism**: Runs multiple flows at once to save time.
+- **Videos & Logs**: Full debugging console at [console.mobile.dev](https://console.mobile.dev).
+- **Free Minutes**: Usually includes a pool of free test minutes for trials.
 
-1. **Create account** at https://console.mobile.dev
+### Setup & Authentication
 
-2. **Get API key** from Console → Settings → API Keys
+1. **Create an account** at [console.mobile.dev](https://console.mobile.dev).
+2. **Login via CLI**:
+   ```bash
+   maestro login
+   ```
+   *This will open your browser to authenticate.*
 
-3. **Authenticate CLI:**
-```bash
-maestro cloud login
-```
+3. **Get API Key (for CI/CD)**:
+   Found in Console → Settings → API Keys.
 
-### Run Tests on Cloud
+### Running Tests in Cloud
+
+Use the pre-configured npm scripts to build and upload:
 
 **Android:**
 ```bash
-maestro cloud \
-  --app-file=android/app/build/outputs/apk/debug/app-debug.apk \
-  e2e/maestro/
+npm run test:e2e:cloud:android
 ```
 
 **iOS:**
 ```bash
-maestro cloud \
-  --app-file=ios/App/build/Build/Products/Debug-iphonesimulator/App.app \
-  e2e/maestro/
+npm run test:e2e:cloud:ios
 ```
 
-### Pricing
+> [!TIP]
+> To save free minutes, use tags to run only critical smoke tests:
+> `maestro cloud --include-tags=smoke ...` or update the scripts in `package.json`.
 
-- **Free tier**: Limited monthly test minutes
-- **Paid plans**: Starting at $250/month per device for unlimited tests
-
-See https://maestro.dev/pricing for current pricing.
+---
 
 ---
 

@@ -14,7 +14,12 @@
     "build:android": "npm run build && cap sync android",
     "build:ios": "npm run build && cap sync ios",
     "test:agents": "npx tsx scripts/run-agent-tests.ts",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "build:e2e:android": "npm run build && npx cap sync android && cd android && ./gradlew assembleDebug",
+    "build:e2e:ios": "npm run build && npx cap sync ios && rm -rf ios/App/DerivedData && xcodebuild -workspace ios/App/App.xcworkspace -scheme App -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 17 Pro' -derivedDataPath ios/App/DerivedData",
+    "test:e2e:cloud:android": "npm run build:e2e:android && maestro cloud --app-file=android/app/build/outputs/apk/debug/app-debug.apk e2e/maestro/",
+    "test:e2e:cloud:ios": "npm run build:e2e:ios && maestro cloud --app-file=ios/App/DerivedData/Build/Products/Debug-iphonesimulator/App.app e2e/maestro/",
+    "test:e2e:cloud:multi": "npx tsx scripts/maestro-multi-agent.ts"
   },
   "dependencies": {
     "@capacitor-community/sqlite": "^7.0.3",
