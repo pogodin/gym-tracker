@@ -49,7 +49,7 @@ function SortableExerciseItem({ exercise, index, onNameChange, onDelete }: Sorta
       </button>
       <span className="text-gray-500 font-medium w-6">{index + 1}.</span>
       <Input
-        label="Exercise Name"
+        label={`Exercise ${index + 1}`}
         value={exercise.name}
         onChange={(e) => onNameChange(e.target.value)}
         placeholder="Exercise name"

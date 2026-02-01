@@ -16,66 +16,79 @@ tags:
 
 # ========== CREATE TEMPLATE ==========
 - tapOn: "+ New Template"
+- waitForAnimationToEnd
 
 - assertVisible: "Template Name"
-- tapOn:
-    id: "template-name-input"
-    optional: true
 - tapOn: "Template Name"
 - inputText: "Leg Day"
 - hideKeyboard
+- waitForAnimationToEnd
 
 # Add first exercise
 - tapOn: "+ Add Exercise"
-- tapOn:
-    id: "exercise-input-0"
-    optional: true
-- tapOn: "Exercise Name"
+- waitForAnimationToEnd
+- tapOn: "Exercise 1"
 - inputText: "Squats"
 - hideKeyboard
+- waitForAnimationToEnd
 
 # Add second exercise
 - tapOn: "+ Add Exercise"
-- tapOn:
-    id: "exercise-input-1"
-    optional: true
-- tapOn: "Exercise Name"
+- waitForAnimationToEnd
+- tapOn: "Exercise 2"
 - inputText: "Romanian Deadlift"
 - hideKeyboard
+- waitForAnimationToEnd
 
 # Add third exercise
 - tapOn: "+ Add Exercise"
-- tapOn:
-    id: "exercise-input-2"
-    optional: true
-- tapOn: "Exercise Name"
+- waitForAnimationToEnd
+- tapOn: "Exercise 3"
 - inputText: "Leg Press"
 - hideKeyboard
+- waitForAnimationToEnd
 
+- scroll
 - takeScreenshot: 02-template-filled
-
 - tapOn: "Create Template"
 - waitForAnimationToEnd
 
-- assertVisible: "Leg Day"
+# ========== VERIFY TEMPLATE CREATED ==========
+- extendedWaitUntil:
+    visible: "Leg Day"
+    timeout: 10000
 - takeScreenshot: 03-template-created
 
 # ========== START WORKOUT ==========
-# Try tapping with just "Start" text
 - tapOn:
     text: ".*Start.*"
 - waitForAnimationToEnd
 - takeScreenshot: 04-workout-started
 
 # ========== FINISH WORKOUT ==========
-# Tap Finish Workout button at bottom
-- tapOn:
-    text: ".*Finish.*"
+- hideKeyboard
+- waitForAnimationToEnd
+- scroll:
+    direction: DOWN
 - waitForAnimationToEnd
 
-# Confirm dialog
+- extendedWaitUntil:
+    visible:
+      id: "finish-workout"
+    timeout: 5000
+
+- tapOn:
+    id: "finish-workout"
+
+- extendedWaitUntil:
+    visible: "Are you sure you want to finish"
+    timeout: 5000
+- takeScreenshot: 04b-finish-confirm-dialog
+
 - tapOn: "Finish"
 - waitForAnimationToEnd
 
-- assertVisible: "Gym Tracker"
+- extendedWaitUntil:
+    visible: "Gym Tracker"
+    timeout: 5000
 - takeScreenshot: 05-test-complete
