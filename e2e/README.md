@@ -123,6 +123,21 @@ maestro test maestro/
 maestro test maestro/smoke-test.yaml
 ```
 
+**Run with output in project directory (recommended):**
+```bash
+maestro test --debug-output test-results --flatten-debug-output maestro/smoke-test.yaml
+```
+
+**Run on specific device:**
+```bash
+# List available devices
+xcrun simctl list devices booted  # iOS
+adb devices                        # Android
+
+# Run on specific device by UUID/ID
+maestro test --device "DEVICE_UUID" maestro/smoke-test.yaml
+```
+
 **Run tests by tag:**
 ```bash
 maestro test --include-tags=smoke maestro/
@@ -132,6 +147,16 @@ maestro test --include-tags=smoke maestro/
 ```bash
 maestro test --continuous maestro/smoke-test.yaml
 ```
+
+### WebView Limitations
+
+This is a Capacitor app using WebView. Some limitations apply:
+
+1. **Text selectors**: Not all text in the WebView is accessible via text selectors. Use regex patterns like `".*Start.*"` when exact text matching fails.
+
+2. **Element IDs**: `aria-label` attributes may not work as ID selectors. Prefer text-based selectors.
+
+3. **Coordinate taps**: As a fallback, use point coordinates: `tapOn: { point: "50%,20%" }`
 
 ---
 

@@ -15,7 +15,7 @@ tags:
 - takeScreenshot: home-initial
 
 # Create new template
-- tapOn: "New Template"
+- tapOn: "+ New Template"
 - extendedWaitUntil:
     visible:
       id: "template-name-input"
@@ -27,19 +27,19 @@ tags:
 - inputText: "Push Day"
 
 # Add first exercise
-- tapOn: "Add Exercise"
+- tapOn: "+ Add Exercise"
 - tapOn:
     id: "exercise-input-0"
 - inputText: "Bench Press"
 
 # Add second exercise
-- tapOn: "Add Exercise"
+- tapOn: "+ Add Exercise"
 - tapOn:
     id: "exercise-input-1"
 - inputText: "Overhead Press"
 
 # Add third exercise
-- tapOn: "Add Exercise"
+- tapOn: "+ Add Exercise"
 - tapOn:
     id: "exercise-input-2"
 - inputText: "Tricep Dips"

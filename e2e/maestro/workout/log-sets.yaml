@@ -9,11 +9,11 @@ tags:
 - launchApp
 
 # Prerequisite: Create template and start workout
-- tapOn: "New Template"
+- tapOn: "+ New Template"
 - tapOn:
     id: "template-name-input"
 - inputText: "Log Sets Test"
-- tapOn: "Add Exercise"
+- tapOn: "+ Add Exercise"
 - tapOn:
     id: "exercise-input-0"
 - inputText: "Bench Press"

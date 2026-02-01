@@ -9,11 +9,11 @@ tags:
 - launchApp
 
 # Prerequisite: Create a template first
-- tapOn: "New Template"
+- tapOn: "+ New Template"
 - tapOn:
     id: "template-name-input"
 - inputText: "Test Template"
-- tapOn: "Add Exercise"
+- tapOn: "+ Add Exercise"
 - tapOn:
     id: "exercise-input-0"
 - inputText: "Exercise 1"
@@ -40,7 +40,7 @@ tags:
 - inputText: "Updated Template"
 
 # Add new exercise
-- tapOn: "Add Exercise"
+- tapOn: "+ Add Exercise"
 - tapOn:
     id: "exercise-input-1"
 - inputText: "New Exercise"
